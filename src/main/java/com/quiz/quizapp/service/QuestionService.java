@@ -24,4 +24,9 @@ public class QuestionService {
     }
 
 
+
+    public String deleteQuestion(Long id) {
+        questionRepository.deleteById(id);
+        return "successfully deleted";
+    }
 }

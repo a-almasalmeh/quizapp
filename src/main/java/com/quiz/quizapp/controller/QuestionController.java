@@ -3,10 +3,7 @@ package com.quiz.quizapp.controller;
 import com.quiz.quizapp.model.Question;
 import com.quiz.quizapp.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,10 @@ public class QuestionController {
     @PostMapping("add")
     public String setQuestion (@RequestBody Question question){
         return questionService.setQuestion(question);
+    }
+
+    @DeleteMapping("delete")
+    public String deleteQuestion (@RequestParam Long id){
+        return questionService.deleteQuestion(id);
     }
 }

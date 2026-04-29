@@ -13,16 +13,6 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     Long id;
-
-
-    public String getQuestionDescription() {
-        return questionDescription;
-    }
-
-    public void setQuestionDescription(String questionDescription) {
-        this.questionDescription = questionDescription;
-    }
-
     String questionDescription;
     String OptionA;
     String OptionB;
@@ -31,7 +21,13 @@ public class Question {
     String correctAnswer;
     String category;
 
+    public String getQuestionDescription() {
+        return questionDescription;
+    }
 
+    public void setQuestionDescription(String questionDescription) {
+        this.questionDescription = questionDescription;
+    }
 
     public String getCategory() {
         return category;
