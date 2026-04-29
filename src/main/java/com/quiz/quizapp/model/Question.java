@@ -3,25 +3,54 @@ package com.quiz.quizapp.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
+
 
 @Entity
 public class Question {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    Long id;
+
+
+    public String getQuestionDescription() {
+        return questionDescription;
+    }
+
+    public void setQuestionDescription(String questionDescription) {
+        this.questionDescription = questionDescription;
+    }
+
+    String questionDescription;
     String OptionA;
     String OptionB;
     String OptionC;
     String OptionD;
-
     String correctAnswer;
+    String category;
 
-    public long getI() {
+
+
+    public String getCategory() {
+        return category;
+    }
+
+    public Long getId() {
         return id;
     }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+
 
     public String getOptionA() {
         return OptionA;
@@ -41,10 +70,6 @@ public class Question {
 
     public String getOptionC() {
         return OptionC;
-    }
-
-    public void setI(long id) {
-        this.id = id;
     }
 
     public void setCorrectAnswer(String correctAnswer) {
