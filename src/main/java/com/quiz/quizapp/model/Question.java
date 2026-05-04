@@ -12,7 +12,7 @@ public class Question {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    Long id;
+    Integer id;
     String questionDescription;
     String OptionA;
     String OptionB;
@@ -33,7 +33,7 @@ public class Question {
         return category;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -41,7 +41,7 @@ public class Question {
         this.category = category;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

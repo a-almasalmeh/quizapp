@@ -17,6 +17,10 @@ public class QuestionService {
         return questionRepository.findAll();
     }
 
+    public List<Question>getQuestionBCategory(String category){
+        return questionRepository.getQuestionByCategory(category);
+    }
+
 
     public String setQuestion(Question question) {
         questionRepository.save(question);
@@ -25,7 +29,7 @@ public class QuestionService {
 
 
 
-    public String deleteQuestion(Long id) {
+    public String deleteQuestion(Integer id) {
         questionRepository.deleteById(id);
         return "successfully deleted";
     }

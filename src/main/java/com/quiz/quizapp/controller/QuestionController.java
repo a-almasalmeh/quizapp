@@ -19,13 +19,18 @@ public class QuestionController {
         return questionService.getAllQuestions();
     }
 
+    @RequestMapping("category/{ctg}")
+    public List<Question> getQuestionByCategory(@PathVariable("ctg") String category){
+        return questionService.getQuestionBCategory(category);
+    }
+
     @PostMapping("add")
     public String setQuestion (@RequestBody Question question){
         return questionService.setQuestion(question);
     }
 
     @DeleteMapping("delete")
-    public String deleteQuestion (@RequestParam Long id){
+    public String deleteQuestion (@RequestParam Integer id){
         return questionService.deleteQuestion(id);
     }
 }
