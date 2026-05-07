@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,23 +17,45 @@ public class QuestionService {
     QuestionRepository questionRepository;
 
     public ResponseEntity<List<Question>> getAllQuestions(){
-        return new ResponseEntity<>(questionRepository.findAll(), HttpStatus.OK);
+        try{
+            return new ResponseEntity<>(questionRepository.findAll(), HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println("something went wrong" + e.getMessage());
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
     }
 
     public ResponseEntity<List<Question>> getQuestionBCategory(String category){
-        return new ResponseEntity<>(questionRepository.getQuestionByCategory(category), HttpStatus.OK);
+
+        try {
+            return new ResponseEntity<>(questionRepository.getQuestionByCategory(category), HttpStatus.OK);
+        }catch (Exception e){
+            System.out.println("Some thing went wrong" + e.getMessage());
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
 
     public ResponseEntity<String> setQuestion(Question question) {
-        questionRepository.save(question);
-        return new ResponseEntity<>("saved successfully", HttpStatus.OK);
+        try{
+            questionRepository.save(question);
+            return new ResponseEntity<>("saved successfully", HttpStatus.CREATED);
+        }catch (Exception e){
+            System.out.println("Some thing went wrong" + e.getMessage());
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
 
 
     public ResponseEntity<String> deleteQuestion(Integer id) {
-        questionRepository.deleteById(id);
-        return new ResponseEntity<>("successfully deleted", HttpStatus.OK);
+        try{
+            questionRepository.deleteById(id);
+            return new ResponseEntity<>("successfully deleted", HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println("Some thing went wrong" + e.getMessage());
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
