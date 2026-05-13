@@ -14,6 +14,15 @@ public class QuestionWrapper {
     String OptionC;
     String OptionD;
 
+    public QuestionWrapper(Integer id, String questionDescription, String optionA, String optionB, String optionC, String optionD) {
+        this.id = id;
+        this.questionDescription = questionDescription;
+        OptionA = optionA;
+        OptionB = optionB;
+        OptionC = optionC;
+        OptionD = optionD;
+    }
+
     public Integer getId() {
         return id;
     }
