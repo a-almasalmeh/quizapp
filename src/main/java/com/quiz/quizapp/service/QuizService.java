@@ -23,28 +23,40 @@ public class QuizService {
 
     public ResponseEntity<String> createQuiz (String title, Integer numQ, String category){
 
-        List<Question> questions = questionRepository.getRandomQuestionByCategory(numQ, category);
+        try{
+            List<Question> questions = questionRepository.getRandomQuestionByCategory(numQ, category);
 
-        Quiz quiz = new Quiz();
-        quiz.setQuizTitle(title);
-        quiz.setQuestions(questions);
+            Quiz quiz = new Quiz();
+            quiz.setQuizTitle(title);
+            quiz.setQuestions(questions);
 
-        quizRepository.save(quiz);
+            quizRepository.save(quiz);
 
-        return new ResponseEntity<>("created", HttpStatus.CREATED);
+            return new ResponseEntity<>("created", HttpStatus.CREATED);
+        } catch (Exception e) {
+            System.out.println("Some thing went wrong "+ e.getMessage());
+            return new ResponseEntity<>("Some thing went wrong",HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     public ResponseEntity<List<QuestionWrapper>> getQuizById(Integer id) {
-        Quiz quiz = quizRepository.findById(id).orElseThrow();
+        try{
+            Quiz quiz = quizRepository.findById(id).orElseThrow();
 
-        List<Question> questionsFromDB = quiz.getQuestions();
-        List<QuestionWrapper> questionsForUser = new ArrayList<>();
+            List<Question> questionsFromDB = quiz.getQuestions();
+            List<QuestionWrapper> questionsForUser = new ArrayList<>();
 
-        for (Question q : questionsFromDB){
-            QuestionWrapper qw = new QuestionWrapper(q.getId(), q.getQuestionDescription(), q.getOptionA(), q.getOptionB(), q.getOptionC(), q.getOptionD());
+            for (Question q : questionsFromDB){
+                QuestionWrapper qw = new QuestionWrapper(q.getId(), q.getQuestionDescription(), q.getOptionA(), q.getOptionB(), q.getOptionC(), q.getOptionD());
 
-            questionsForUser.add(qw);
+                questionsForUser.add(qw);
+            }
+            return new ResponseEntity<>(questionsForUser, HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println("some thing went wrong " + e.getMessage());
+            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(questionsForUser, HttpStatus.OK);
+
     }
 }
