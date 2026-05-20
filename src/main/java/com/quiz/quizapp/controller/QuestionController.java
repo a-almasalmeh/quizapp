@@ -15,14 +15,19 @@ public class QuestionController {
     @Autowired
     QuestionService questionService;
 
-    @RequestMapping("allquestion")
+    @GetMapping("allquestion")
     public ResponseEntity<List<Question>> showAllQuestions (){
         return questionService.getAllQuestions();
     }
 
-    @RequestMapping("category/{category}")
+    @GetMapping("category/{category}")
     public ResponseEntity<List<Question>> getQuestionByCategory(@PathVariable String category){
         return questionService.getQuestionBCategory(category);
+    }
+
+    @PostMapping("addAll")
+    public ResponseEntity<String> setQuestions(@RequestBody List<Question> questions){
+        return questionService.setQuestions(questions);
     }
 
     @PostMapping("add")

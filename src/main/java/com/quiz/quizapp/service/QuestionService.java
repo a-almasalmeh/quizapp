@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -57,5 +55,13 @@ public class QuestionService {
             System.out.println("Some thing went wrong" + e.getMessage());
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+
+    public ResponseEntity<String> setQuestions(List<Question> questions) {
+        for(Question q : questions){
+            questionRepository.save(q);
+        }
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 }
