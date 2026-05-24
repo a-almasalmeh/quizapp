@@ -24,7 +24,7 @@ public class QuestionService {
 
     }
 
-    public ResponseEntity<List<Question>> getQuestionBCategory(String category){
+    public ResponseEntity<List<Question>> getQuestionByCategory(String category){
 
         try {
             return new ResponseEntity<>(questionRepository.getQuestionByCategory(category), HttpStatus.OK);

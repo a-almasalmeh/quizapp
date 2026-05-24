@@ -22,7 +22,7 @@ public class QuestionController {
 
     @GetMapping("category/{category}")
     public ResponseEntity<List<Question>> getQuestionByCategory(@PathVariable String category){
-        return questionService.getQuestionBCategory(category);
+        return questionService.getQuestionByCategory(category);
     }
 
     @PostMapping("addAll")
