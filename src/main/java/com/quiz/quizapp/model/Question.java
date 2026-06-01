@@ -5,21 +5,25 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-
+/**
+ * Represents a quiz question entity.
+ * This class maps to the question table in the database, and holds
+ * the question text, multiple-choice-options, the correct answer and the category.
+ */
 @Entity
 public class Question {
 
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    Integer id;
-    String questionDescription;
-    String OptionA;
-    String OptionB;
-    String OptionC;
-    String OptionD;
-    String correctAnswer;
-    String category;
+    private Integer id;
+    private String questionDescription;
+    private String OptionA;
+    private String OptionB;
+    private String OptionC;
+    private String OptionD;
+    private String correctAnswer;
+    private String category;
 
     public String getQuestionDescription() {
         return questionDescription;
