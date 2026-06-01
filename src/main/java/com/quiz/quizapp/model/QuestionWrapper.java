@@ -4,9 +4,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+/**
+ * Data Transfer Object (DTO) fpr frontend communication.
+ * Filters out sensitive data like the correct answer
+ */
 public class QuestionWrapper {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
+
     Integer id;
     String questionDescription;
     String OptionA;
