@@ -5,6 +5,10 @@ import jdk.jfr.DataAmount;
 
 import java.util.List;
 
+/**
+ * Represents quiz entity in the database.
+ * Each quiz has a title and a collection of questions linked with a many-to-many relationship.
+ */
 @Entity
 public class Quiz {
 
